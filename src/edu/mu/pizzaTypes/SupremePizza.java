@@ -1,40 +1,49 @@
 package edu.mu.pizzaTypes;
 
-import java.util.List;
-
-import edu.mu.Cooking.ICookingStrategy;
 import edu.mu.pizza.AbstractPizza;
 import edu.mu.pizza.Toppings;
 
-/**
- * 
- */
 public class SupremePizza extends AbstractPizza{
+
 
 	/**
 	 * @param toppingList
 	 * @param priceWithoutToppings
-	 * @param totalPrice
 	 * @param pizzaOrderID
-	 * @param cookingStrategy
-	 * @param cookingPrice
 	 */
-	public SupremePizza(List<Toppings> toppingList, double priceWithoutToppings, double totalPrice, int pizzaOrderID,
-			ICookingStrategy cookingStrategy, double cookingPrice) {
-		super(toppingList, priceWithoutToppings, totalPrice, pizzaOrderID, cookingStrategy, cookingPrice);
+	public SupremePizza(double priceWithoutToppings) {
+		super(3.50);
 		// TODO Auto-generated constructor stub
+        addTopping(Toppings.TOMATO);
+        addTopping(Toppings.CHEESE);
+        addTopping(Toppings.BELL_PEPPER);
+        addTopping(Toppings.ITALIAN_SAUSAGE);
+        addTopping(Toppings.PEPPERONI);
+        addTopping(Toppings.BLACK_OLIVE);
+        addTopping(Toppings.MUSHROOM);
+        addToppingsToPrice(priceWithoutToppings);
 	}
 
 	@Override
-	protected double addTopingsToPrice(double priceWithoutToppings) {
-		// TODO Auto-generated method stub
-		return 0;
+	public double addToppingsToPrice(double priceWithoutToppings) {
+		this.priceWithoutToppings = priceWithoutToppings;
+		
+		//set toppingPrice to 0
+		double toppingPrice = 0;
+		
+		//go through toppingList and add up the dollar values associated with each topping on pizza
+		for(Toppings topping: toppingList) {
+			toppingPrice = toppingPrice + topping.getToppingPrice();
+		}
+		//calculate totalPrice of pizza and toppings & return value
+		totalPrice = priceWithoutToppings + toppingPrice + cookingPrice;
+		return totalPrice;
 	}
 
 	@Override
 	public double updatePizzaPrice() {
-		// TODO Auto-generated method stub
-		return 0;
+		totalPrice += cookingPrice;
+		return totalPrice;
 	}
 
 }
