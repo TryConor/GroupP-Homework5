@@ -99,8 +99,8 @@ public class PizzaOrder {
 	     double totalPrice = 0.0;
 	     for (AbstractPizza pizza : pizzaOrderList) {
 	    	 
-	    	 totalPrice += pizza.updatePizzaPrice();
-	    	 //System.out.println(pizza.updatePizzaPrice());
+	    	 totalPrice += pizza.getTotalPrice();
+	    	 
 	  
 	     }
 	     return totalPrice;
